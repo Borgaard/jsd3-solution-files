@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="listApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Popular San Francisco Parks</title>
+  <script src="js/angular.min.js"></script>
+  <script src="js/parks.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main" ng-controller="ListController as parksList">
+
+  <div class="search">
+    <h1>Popular SF Parks</h1>
+    <label>search: </label>
+    <input ng-model="query" placeholder="Search for parks" autofocus>
+
+    <label class="formgroup">by:
+      <select>
+        <option value="name">Name</option>
+        <option value="hours">Hours</option>
+      </select>
+    </label>
+
+  </div>
+
+  <ul class="parklist">
+    <li class="park cf" ng-repeat="item in parksList.parks | filter: query">
+      <div class="info">
+        <h2>{{item.name}}</h2>
+        <p>{{item.location}}</p>
+        <p>{{item.hours}}</p>
+        <p><a href="{{item.link}}" target="_blank">More info about {{item.name}}</a></p>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
